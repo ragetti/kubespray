@@ -1,0 +1,19 @@
+sudo pip install -r requirements.txt
+pip install ansible-modules-hashivault
+
+ssh-keygen
+ssh-copy-id -i ~/.ssh/kubespray.pub selliott@192.168.187.130
+sudo update-ca-certificates
+
+declare -a IPS=(10.10.1.3 10.10.1.4 10.10.1.5)
+CONFIG_FILE=inventory/mycluster/hosts.ini python3 contrib/inventory_builder/inventory.py ${IPS[@]}
+
+
+
+
+ansible-playbook -i inventory/test1/hosts.ini cluster.yml -v -b --private-key=~/.ssh/kubespray --ask-sudo-pass
+
+ansible-playbook -i inventory/test1/hosts.ini cluster.yml -v -b --private-key=~/.ssh/kubespray --ask-sudo-pass -e "@extra_vars.json"
+
+
+
