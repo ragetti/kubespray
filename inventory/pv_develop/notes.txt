@@ -17,3 +17,10 @@ ansible-playbook -i inventory/test1/hosts.ini cluster.yml -v -b --private-key=~/
 
 
 
+# using this currently
+ansible-playbook -i inventory/pv_develop/hosts.ini cluster.yml -v -b --private-key=~/.ssh/mssh --ask-sudo-pass -e "@inventory/pv_develop/extra_vars.json"
+
+ansible-playbook -i inventory/pv_develop/hosts.ini reset.yml -v -b --private-key=~/.ssh/mssh --ask-sudo-pass -e "@inventory/pv_develop/extra_vars.json"
+
+
+
